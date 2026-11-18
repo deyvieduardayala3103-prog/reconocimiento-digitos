@@ -1,0 +1,16 @@
+{
+  "entrada": "vector de 64 valores (imagen 8x8 aplanada por filas)",
+  "escala_original": "0 a 16 (load_digits)",
+  "normalizacion": "valor / 16  -> rango 0 a 1",
+  "fondo": "0 (blanco en el lienzo se invierte a 0)",
+  "tinta": "valores altos (trazo negro en el lienzo se invierte a valores altos)",
+  "transformacion_lienzo": [
+    "1. Inversión de colores: lienzo blanco con trazo negro -> fondo 0, tinta alta (como load_digits)",
+    "2. Recorte al rectángulo que contiene el trazo (elimina espacio vacío)",
+    "3. Redimensionar conservando proporción para que el alto mida 32 px (en load_digits todos los dígitos ocupan el alto completo)",
+    "4. Centrar horizontalmente dentro de un mapa de 32x32 usando el centro de masa",
+    "5. Proporción de tinta en cada bloque de 4x4",
+    "6. Multiplicar por 16 -> 8x8 con valores 0 a 16 (bloque lleno = 16)",
+    "7. Dividir entre 16 -> 0 a 1 (la misma normalización del entrenamiento)"
+  ]
+}

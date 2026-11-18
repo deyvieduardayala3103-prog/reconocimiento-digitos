@@ -1,0 +1,89 @@
+{
+  "configuracion": {
+    "semilla": 42,
+    "division": "60/20/20 estratificada",
+    "epocas_maximas": 300,
+    "batch_size": 32,
+    "early_stopping": {
+      "monitor": "val_loss",
+      "patience": 20,
+      "restore_best_weights": true
+    },
+    "secuencial": {
+      "capas_ocultas": [
+        64,
+        32
+      ],
+      "activacion": "relu",
+      "regularizacion": "Dropout 0.20 tras la primera capa oculta",
+      "tasa_aprendizaje": 0.001,
+      "justificacion": "Dos capas medianas: suficiente capacidad para 64 entradas; Dropout reduce el sobreajuste con solo ~1078 ejemplos."
+    },
+    "funcional": {
+      "capas_ocultas": [
+        128
+      ],
+      "activacion": "relu",
+      "regularizacion": "L2 0.0001 + Dropout 0.30",
+      "tasa_aprendizaje": 0.001,
+      "justificacion": "Una capa más ancha y poco profunda; L2 y Dropout controlan el sobreajuste de una capa grande."
+    }
+  },
+  "resultados": {
+    "secuencial": {
+      "parametros": 6570,
+      "epocas_ejecutadas": 76,
+      "epocas_efectivas": 56,
+      "validacion": {
+        "accuracy": 0.9805013927576601,
+        "f1_macro": 0.9806118931492065
+      },
+      "prueba": {
+        "accuracy": 0.9722222222222222,
+        "f1_macro": 0.971662908780465
+      }
+    },
+    "funcional": {
+      "parametros": 9610,
+      "epocas_ejecutadas": 114,
+      "epocas_efectivas": 94,
+      "validacion": {
+        "accuracy": 0.9860724233983287,
+        "f1_macro": 0.9860179615489395
+      },
+      "prueba": {
+        "accuracy": 0.9722222222222222,
+        "f1_macro": 0.9719968104570776
+      }
+    }
+  },
+  "modelo_elegido": "funcional",
+  "criterio_eleccion": "Mayor F1 macro en validación (empate: menos parámetros)",
+  "errores_prueba": 10,
+  "errores_analizados": [
+    {
+      "indice_dataset": 1264,
+      "real": 1,
+      "predicho": 8,
+      "prob_predicho": 0.7005307674407959,
+      "prob_real": 0.05902696028351784,
+      "segunda_opcion": 5
+    },
+    {
+      "indice_dataset": 1573,
+      "real": 0,
+      "predicho": 4,
+      "prob_predicho": 0.4868122637271881,
+      "prob_real": 0.48017361760139465,
+      "segunda_opcion": 0
+    },
+    {
+      "indice_dataset": 206,
+      "real": 8,
+      "predicho": 1,
+      "prob_predicho": 0.5822077989578247,
+      "prob_real": 0.4086982309818268,
+      "segunda_opcion": 8
+    }
+  ]
+}
